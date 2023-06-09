@@ -41,6 +41,7 @@ watch(items, () => {
         @click="() => switchTab(tab[0] as Tab)">
         {{ tab[1] }}
       </button>
+      <div class="active-tab-border"></div>
     </div>
     <TodoListItem v-for="item in currentItems" :key="item.id" :item="item"
       :switch-state="(state: boolean) => item.done = state" :delete-item="() => items.splice(items.indexOf(item), 1)" />
@@ -53,14 +54,38 @@ watch(items, () => {
 
 <style scoped>
 .tabs {
+  position: relative;
   display: flex;
   margin-bottom: 16px;
+}
+
+.active-tab-border {
+  content: '';
+  position: absolute;
+  width: 33.33%;
+  display: block;
+  height: 100%;
+  border-bottom: solid 2px #42b983;
+  transition: all .1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  background-color: hsla(153, 47%, 49%, .15);
+  border-radius: 4px 4px 0 0;
+}
+
+.tab:nth-of-type(1).active~.active-tab-border {
+  transform: translate(0, 0);
+}
+
+.tab:nth-of-type(2).active~.active-tab-border {
+  transform: translate(100%, 0);
+}
+
+.tab:nth-of-type(3).active~.active-tab-border {
+  transform: translate(200%, 0);
 }
 
 .tab {
   flex: 1;
   padding: 8px 16px;
-  border-radius: 4px 4px 0 0;
   cursor: pointer;
   border: none;
   border-bottom: solid 2px #ccc;
@@ -68,12 +93,7 @@ watch(items, () => {
   color: #ccc;
 }
 
-.tab:hover {
-  background-color: rgb(128, 128, 128, 0.2);
-}
-
 .tab.active {
-  border-bottom-color: #42b983;
   color: #42b983;
 }
 
