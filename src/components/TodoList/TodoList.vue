@@ -46,7 +46,8 @@ watch(items, () => {
       :switch-state="(state: boolean) => item.done = state" />
     <div class="spacer"></div>
     <TodoListInput
-      :add-task="(taskName: string) => items.push({ id: Date.now() + Math.random(), name: taskName, done: false })" />
+      :add-task="(taskName: string) => items.push({ id: Date.now() + Math.random(), name: taskName, done: false })"
+      :items="items" />
   </div>
 </template>
 

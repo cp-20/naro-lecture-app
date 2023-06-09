@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import type { Item } from '@/components/TodoList/TodoList.vue';
 import { ref } from 'vue';
 
 const props = defineProps<{
+  items: Item[];
   addTask: (taskName: string) => void;
 }>()
 
@@ -13,9 +15,16 @@ const validate = () => {
     error.value = 'タスク名を入力してください';
     return false;
   }
+
+  if (props.items.some(item => item.name === taskName.value)) {
+    error.value = 'そのタスクは既に存在しています';
+    return false;
+  }
+
   error.value = '';
   return true
 }
+
 
 const submitHandler = () => {
   if (!validate()) return;
