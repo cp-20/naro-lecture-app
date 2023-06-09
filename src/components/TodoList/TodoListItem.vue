@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import type { Item } from '@/components/TodoList/TodoList.vue';
 
-defineProps<{ item: Item, switchState: (state: boolean) => void }>();
+defineProps<{
+  item: Item;
+  switchState: (state: boolean) => void;
+  deleteItem: () => void;
+}>();
 </script>
 
 <template>
@@ -14,6 +18,7 @@ defineProps<{ item: Item, switchState: (state: boolean) => void }>();
       </svg>
     </div>
     <span class="task-name">{{ item.name }}</span>
+    <button class="delete-button" @click="deleteItem">削除</button>
   </label>
 </template>
 
@@ -66,5 +71,19 @@ defineProps<{ item: Item, switchState: (state: boolean) => void }>();
 
 .task-name {
   font-size: 16px;
+}
+
+.delete-button {
+  margin-left: auto;
+  padding: 4px 8px;
+  border-radius: 2px;
+  border: none;
+  background-color: transparent;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: rgba(128, 128, 128, .2);
 }
 </style>
