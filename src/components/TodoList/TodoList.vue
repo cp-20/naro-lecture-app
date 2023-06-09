@@ -12,7 +12,7 @@ export type Item = {
 
 const items = ref<Item[]>(getInitialItems());
 
-type Tab = 'all' | 'done' | 'undone';
+export type Tab = 'all' | 'done' | 'undone';
 
 const activeTab = ref<Tab>('all');
 const tabName: Record<Tab, string> = {
@@ -44,7 +44,8 @@ watch(items, () => {
       <div class="active-tab-border"></div>
     </div>
     <TodoListItem v-for="item in currentItems" :key="item.id" :item="item"
-      :switch-state="(state: boolean) => item.done = state" :delete-item="() => items.splice(items.indexOf(item), 1)" />
+      :switch-state="(state: boolean) => item.done = state" :delete-item="() => items.splice(items.indexOf(item), 1)"
+      :active-tab="activeTab" />
     <div class="spacer"></div>
     <TodoListInput
       :add-task="(taskName: string) => items.push({ id: Date.now() + Math.random(), name: taskName, done: false })"
