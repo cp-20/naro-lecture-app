@@ -25,7 +25,7 @@ const checkboxHandler = () => {
 </script>
 
 <template>
-  <label class="todo-item" :class="{ fadeout: willUnmount }">
+  <label class="todo-item" :class="{ 'fade-out': willUnmount }">
     <div class="checkbox">
       <input type="checkbox" :checked="item.done" @change="checkboxHandler" />
       <svg viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,13 +45,26 @@ const checkboxHandler = () => {
   cursor: pointer;
   padding: 8px 16px;
   transition: all .3s ease;
+  animation: fade-in .3s ease;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }
 
 .todo-item:hover {
   background-color: rgba(128, 128, 128, .1);
 }
 
-.todo-item.fadeout {
+.todo-item.fade-out {
   opacity: 0;
   transform: translateX(8px);
 }

@@ -43,7 +43,7 @@ watch(items, () => {
       </button>
       <div class="active-tab-border"></div>
     </div>
-    <TodoListItem v-for="item in currentItems" :key="item.id" :item="item"
+    <TodoListItem v-for="item in currentItems" :key="item.id + activeTab" :item="item"
       :switch-state="(state: boolean) => item.done = state" :delete-item="() => items.splice(items.indexOf(item), 1)"
       :active-tab="activeTab" />
     <div class="spacer"></div>
