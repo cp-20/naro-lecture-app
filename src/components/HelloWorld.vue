@@ -2,6 +2,7 @@
 import ItemList from '@/components/ItemList/ItemList.vue';
 import ClickCounter from './ClickCounter.vue'
 import TodoList from '@/components/TodoList/TodoList.vue';
+import ClockView from '@/components/Clock/ClockView.vue';
 
 defineProps<{
   msg: string
@@ -13,7 +14,8 @@ defineProps<{
     <!-- <h1>{{ msg }}</h1> -->
     <!-- <ClickCounter /> -->
     <!-- <ItemList /> -->
-    <TodoList />
+    <!-- <TodoList /> -->
+    <ClockView />
   </div>
 </template>
 
